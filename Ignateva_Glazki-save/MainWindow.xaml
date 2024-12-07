@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ignateva_Glazki_save"
         mc:Ignorable="d"
-        Title="Игнатьева" Height="450" Width="800"
+        Title="Игнатьева" Height="580" Width="950"
         FontFamily="Century Gothic" Icon="img/Глазки-save.ico"
-        MinHeight="450" MinWidth="800">
+        MinHeight="500" MinWidth="950">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="75"/>
@@ -18,7 +18,8 @@
 
         <Image Source="img/Глазки-save.png" HorizontalAlignment="Left"/>
 
-        <TextBlock Text="Список агентов" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Text="Список агентов" FontSize="30" HorizontalAlignment="Center"
+                   VerticalAlignment="Center"/>
 
         <Frame Grid.Row="1" Name="MainFrame"
                ContentRendered="MainFrame_ContentRendered"
