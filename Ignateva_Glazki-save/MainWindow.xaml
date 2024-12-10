@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ignateva_Glazki_save"
         mc:Ignorable="d"
-        Title="Игнатьева" Height="580" Width="950"
+        Title="Игнатьева" Height="620" Width="950"
         FontFamily="Century Gothic" Icon="img/Глазки-save.ico"
         MinHeight="500" MinWidth="950">
     <Grid>
