@@ -35,7 +35,7 @@ namespace Ignateva_Glazki_save
         private void UpdateAgents()
         {
             var currentAgents = ИгнатьеваГлазкиSaveEntities.GetContext().Agent.ToList();
-            var currentAgentTypes = ИгнатьеваГлазкиSaveEntities.GetContext().AgentType.ToList();
+            //var currentAgentTypes = ИгнатьеваГлазкиSaveEntities.GetContext().AgentType.ToList();
 
             switch (ComboSort.SelectedIndex)
             {
@@ -71,31 +71,36 @@ namespace Ignateva_Glazki_save
                     break;
 
                 case 1:
-                    currentAgents = currentAgents.Where(p => (Convert.ToString(p.AgentType.Title) == "МФО")).ToList();
+                    currentAgents = currentAgents.Where(p => (Convert.ToString(p.AgentTypeStr) == "МФО")).ToList();
                     break;
 
                 case 2:
-                    currentAgents = currentAgents.Where(p => (Convert.ToString(p.AgentType.Title) == "ООО")).ToList();
+                    currentAgents = currentAgents.Where(p => (Convert.ToString(p.AgentTypeStr) == "ООО")).ToList();
                     break;
 
                 case 3:
-                    currentAgents = currentAgents.Where(p => (Convert.ToString(p.AgentType.Title) == "ЗАО")).ToList();
+                    currentAgents = currentAgents.Where(p => (Convert.ToString(p.AgentTypeStr) == "ЗАО")).ToList();
                     break;
 
                 case 4:
-                    currentAgents = currentAgents.Where(p => (Convert.ToString(p.AgentType.Title) == "МКК")).ToList();
+                    currentAgents = currentAgents.Where(p => (Convert.ToString(p.AgentTypeStr) == "МКК")).ToList();
                     break;
 
                 case 5:
-                    currentAgents = currentAgents.Where(p => (Convert.ToString(p.AgentType.Title) == "ОАО")).ToList();
+                    currentAgents = currentAgents.Where(p => (Convert.ToString(p.AgentTypeStr) == "ОАО")).ToList();
                     break;
 
                 case 6:
-                    currentAgents = currentAgents.Where(p => (Convert.ToString(p.AgentType.Title) == "ПАО")).ToList();
+                    currentAgents = currentAgents.Where(p => (Convert.ToString(p.AgentTypeStr) == "ПАО")).ToList();
                     break;
             }
 
-            currentAgents = currentAgents.Where(p => p.Title.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
+            currentAgents = currentAgents.Where(p => p.Title.ToLower().Contains(TBoxSearch.Text.ToLower())
+            || p.Phone.ToString().Replace(" ", "").Replace("-", "").Replace("+", "").Replace("(", "").Replace(")", "").
+            Contains(TBoxSearch.Text.Replace(" ","").Replace("-","").Replace("+","").Replace("(","").Replace(")",""))
+            || p.Email.ToLower().Replace(" ", "").Replace("@", "").Replace(".", "").
+            Contains(TBoxSearch.Text.ToLower().Replace(" ", "").Replace("@", "").Replace(".", ""))
+            ).ToList();
 
             AgentListView.ItemsSource = currentAgents.ToList();
         }
