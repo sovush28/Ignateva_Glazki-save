@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AgentPage" FontFamily="Century Gothic"
-      >
+      IsVisibleChanged="Page_IsVisibleChanged">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -74,14 +74,14 @@
                                Margin="5">
                             <Image.Source>
                                 <Binding Path="Logo">
-                                    <Binding.FallbackValue>
+                                    <!--<Binding.FallbackValue>
                                         <BitmapImage UriSource="img/picture.png"/>
-                                    </Binding.FallbackValue>
-                                    <!--<Binding.TargetNullValue>
+                                    </Binding.FallbackValue>-->
+                                    <Binding.TargetNullValue>
                                         <ImageSource>
                                             img/picture.png
                                         </ImageSource>
-                                    </Binding.TargetNullValue>-->
+                                    </Binding.TargetNullValue>
                                 </Binding>
                             </Image.Source>
                         </Image>
@@ -111,7 +111,8 @@
 
                         <Button Name="EditButton" Content="редактировать"
                                 Grid.Column="1" Grid.Row="4" Margin="2"
-                                HorizontalAlignment="Left"/>
+                                HorizontalAlignment="Left"
+                                Click="EditButton_Click"/>
                         
                         <!--<StackPanel Grid.Column="1" Grid.Row="4" Orientation="Horizontal">
                             <Button Name="EditButton" Content="редактировать" Margin="2"/>
@@ -132,7 +133,8 @@
                     Width="16" Height="20"
                     Click="LeftDirButton_Click"/>
 
-            <ListBox FontSize="16" Name="PageListBox" MouseUp="PageListBox_MouseUp">
+            <ListBox FontSize="16" Height="26"
+                     Name="PageListBox" MouseUp="PageListBox_MouseUp">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Horizontal"/>
@@ -145,7 +147,10 @@
                     Click="RightDirButton_Click"/>
 
         </StackPanel>
-        
-        
+
+        <Button Name="AddButton" Content="Добавить" Grid.Row="3" Margin="10"
+                HorizontalAlignment="Left"
+                Click="AddButton_Click"/>
+
     </Grid>
 </Page>

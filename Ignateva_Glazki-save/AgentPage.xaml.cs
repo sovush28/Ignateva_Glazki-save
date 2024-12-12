@@ -117,6 +117,7 @@ namespace Ignateva_Glazki_save
 
             UpdateAgents();
         }
+
         private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             UpdateAgents();
@@ -236,5 +237,26 @@ namespace Ignateva_Glazki_save
             ChangePage(2, null);
         }
 
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new AddEditPage(null));
+        }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new AddEditPage((sender as Button).DataContext as Agent)); ;
+        }
+
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if(Visibility==Visibility.Visible)
+            {
+                ИгнатьеваГлазкиSaveEntities.GetContext().ChangeTracker.Entries().ToList().
+                    ForEach(p => p.Reload());
+                AgentListView.ItemsSource = ИгнатьеваГлазкиSaveEntities.GetContext().Agent.ToList();
+                
+                UpdateAgents();
+            }
+        }
     }
 }
