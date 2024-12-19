@@ -53,6 +53,9 @@
             </Image>
 
             <Button Content="Изменить" Name="ChangePictureBtn" Click="ChangePictureBtn_Click"/>
+
+            <Button Content="История реализации продукции" Margin="20" Width="330"
+                    Name="ProdHistoryBtn" Click="ProdHistoryBtn_Click"/>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
@@ -100,5 +103,7 @@
                     Opacity="{Binding ID}"/>
         </StackPanel>
 
+        
+        
     </Grid>
 </Page>

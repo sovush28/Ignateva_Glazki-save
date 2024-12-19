@@ -32,6 +32,7 @@ namespace Ignateva_Glazki_save
             var currentAgents = ИгнатьеваГлазкиSaveEntities.GetContext().Agent.ToList();
             //var currentAgentTypes = ИгнатьеваГлазкиSaveEntities.GetContext().AgentType.ToList();
 
+
             switch (ComboSort.SelectedIndex)
             {
                 case 1:
@@ -42,12 +43,14 @@ namespace Ignateva_Glazki_save
                     currentAgents = currentAgents.OrderByDescending(p => p.Title).ToList();
                     break;
 
-                    //скидка по возрастанию
+                //скидка по возрастанию
                 case 3:
+                    currentAgents = currentAgents.OrderBy(p => p.Discount).ToList();
                     break;
 
                 //скидка по убыванию
                 case 4:
+                    currentAgents = currentAgents.OrderByDescending(p => p.Discount).ToList();
                     break;
 
                 case 5:
@@ -114,6 +117,8 @@ namespace Ignateva_Glazki_save
 
             ComboSort.SelectedIndex = 0;
             ComboFilter.SelectedIndex = 0;
+
+            ChangePriorityButton.Visibility = Visibility.Hidden;
 
             UpdateAgents();
         }
@@ -244,7 +249,7 @@ namespace Ignateva_Glazki_save
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            Manager.MainFrame.Navigate(new AddEditPage((sender as Button).DataContext as Agent)); ;
+            Manager.MainFrame.Navigate(new AddEditPage((sender as Button).DataContext as Agent));
         }
 
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -256,6 +261,58 @@ namespace Ignateva_Glazki_save
                 AgentListView.ItemsSource = ИгнатьеваГлазкиSaveEntities.GetContext().Agent.ToList();
                 
                 UpdateAgents();
+            }
+        }
+
+        private void AgentListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (AgentListView.SelectedItems.Count > 1)
+            {
+                ChangePriorityButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ChangePriorityButton.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void ChangePriorityButton_Click(object sender, RoutedEventArgs e)
+        {
+            int maxPriority = 0;
+            foreach(Agent agent in AgentListView.SelectedItems)
+            {
+                if (agent.Priority > maxPriority)
+                    maxPriority = agent.Priority;
+            }
+
+            ChangePriorityWindow myWindow = new ChangePriorityWindow(maxPriority);
+
+            myWindow.ShowDialog();
+
+            if (string.IsNullOrEmpty(myWindow.TBPriority.Text) ||
+                Convert.ToInt32(myWindow.TBPriority.Text) < 0)
+            {
+                MessageBox.Show("Изменения не произошло");
+            }
+            else
+            {
+                int newPriority = Convert.ToInt32(myWindow.TBPriority.Text);
+
+                foreach (Agent agent in AgentListView.SelectedItems)
+                {
+                    agent.Priority = newPriority;
+                }
+
+                try
+                {
+                    ИгнатьеваГлазкиSaveEntities.GetContext().SaveChanges();
+                    MessageBox.Show("Информация сохранена");
+                    UpdateAgents();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
             }
         }
     }

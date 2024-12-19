@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -31,6 +32,10 @@ namespace Ignateva_Glazki_save
             {
                 _currentAgent = SelectedAgent;
                 ComboType.SelectedIndex = _currentAgent.AgentTypeID - 1;
+            }
+            else
+            {
+                ProdHistoryBtn.Visibility = Visibility.Hidden;
             }
             DataContext = _currentAgent;
         }
@@ -184,6 +189,12 @@ namespace Ignateva_Glazki_save
                     }
                 }
             }
+        }
+
+        private void ProdHistoryBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ProdHistoryWindow prodHistoryWindow = new ProdHistoryWindow((sender as Button).DataContext as Agent);
+            prodHistoryWindow.ShowDialog();
         }
     }
 }

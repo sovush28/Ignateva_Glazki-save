@@ -1,0 +1,92 @@
+﻿<Window x:Class="Ignateva_Glazki_save.AddProdHistoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ignateva_Glazki_save"
+        mc:Ignorable="d"
+        Title="AddProdHistoryWindow" Height="310" Width="750"
+        FontFamily="Century Gothic"
+        Icon="img/Глазки-save.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Введите информацию о новой позиции:"
+                       FontSize="20" Grid.Row="0" Grid.ColumnSpan="2"
+                       HorizontalAlignment="Center"
+                       Margin="10"/>
+
+        <TextBlock Text="Наименование продукции: " FontSize="15"
+                       Grid.Row="1" Grid.Column="0"
+                       HorizontalAlignment="Right"
+                       Margin="10"
+                       VerticalAlignment="Top"/>
+
+        <ComboBox Name="ComboProdName" FontSize="15" Grid.Row="1" Grid.Column="1"
+                  HorizontalAlignment="Left" Margin="10" Width="340"
+                  ItemsSource="{Binding Path=Product}"
+                  IsEditable="True" TextSearch.TextPath="Title" StaysOpenOnEdit="True">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding Title}"></Label>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>            
+        </ComboBox>
+
+        <!--<TextBox Name="TBProdName" FontSize="15"
+                 Width="200" Height="60" TextWrapping="Wrap"
+                 Grid.Row="1" Grid.Column="1"
+                 HorizontalAlignment="Left"
+                 Margin="10"/>-->
+
+        <TextBlock Text="Количество проданных единиц: " FontSize="15"
+                       Grid.Row="2" Grid.Column="0"
+                       HorizontalAlignment="Right"
+                       Margin="10"
+                       VerticalAlignment="Center"/>
+
+        <TextBox Name="TBProdCount" FontSize="15" Width="200"
+                     Grid.Row="2" Grid.Column="1"
+                     HorizontalAlignment="Left"
+                     Margin="10"/>
+
+        <TextBlock Text="Дата продажи: " FontSize="15"
+                       Grid.Row="3" Grid.Column="0"
+                       HorizontalAlignment="Right"
+                       Margin="10"
+                       VerticalAlignment="Center"/>
+
+        <DatePicker Width="200" Height="30" FontSize="15"
+                        Grid.Row="3" Grid.Column="1"
+                        HorizontalAlignment="Left"
+                        Margin="10"
+                    Name="SaleDatePicker"/>
+
+
+        <StackPanel Orientation="Horizontal" 
+                    HorizontalAlignment="Center"
+                    Grid.Row="4" Grid.ColumnSpan="2">
+
+            <Button Content="Отменить" FontSize="20"
+                    Name="CancelAddBtn" Click="CancelAddBtn_Click"
+                    Margin="10"
+                    />
+
+            <Button Content="Сохранить" FontSize="20"
+                    Name="SaveBtn" Click="SaveBtn_Click"
+                    Margin="10"/>
+
+        </StackPanel>
+
+    </Grid>
+</Window>

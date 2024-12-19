@@ -64,6 +64,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddProdHistoryWindow.xaml.cs">
+      <DependentUpon>AddProdHistoryWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Agent.cs">
       <DependentUpon>IgnatevaGlazkiModel.tt</DependentUpon>
     </Compile>
@@ -72,6 +75,9 @@
     </Compile>
     <Compile Include="AgentType.cs">
       <DependentUpon>IgnatevaGlazkiModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ChangePriorityWindow.xaml.cs">
+      <DependentUpon>ChangePriorityWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="IgnatevaGlazkiModel.cs">
       <AutoGen>True</AutoGen>
@@ -86,6 +92,9 @@
     </Compile>
     <Compile Include="MaterialType.cs">
       <DependentUpon>IgnatevaGlazkiModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProdHistoryWindow.xaml.cs">
+      <DependentUpon>ProdHistoryWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Product.cs">
       <DependentUpon>IgnatevaGlazkiModel.tt</DependentUpon>
@@ -112,7 +121,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddProdHistoryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AgentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChangePriorityWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -144,6 +161,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ProdHistoryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Manager.cs" />

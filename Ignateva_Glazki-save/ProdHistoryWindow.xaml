@@ -1,0 +1,99 @@
+﻿<Window x:Class="Ignateva_Glazki_save.ProdHistoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ignateva_Glazki_save"
+        mc:Ignorable="d"
+        Title="ProdHistoryWindow" Height="500" Width="810"
+        FontFamily="Century Gothic"
+        Icon="img/Глазки-save.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="300"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <WrapPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center"
+                   Margin="10" VerticalAlignment="Bottom">
+            <TextBlock Text="История реализации продукции агента "
+                   TextWrapping="Wrap" FontSize="20"/>
+
+            <TextBlock Text="{Binding AgentTitle}"
+                       TextWrapping="Wrap" FontSize="20"
+                       x:Name="ProdHistoryHeader"/>
+        </WrapPanel>
+
+        <Button Content="Снять выделение" Name="CancelSelectionBtn" Click="CancelSelectionBtn_Click"
+        Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10"/>
+
+        <ListView Grid.Row="2" Height="300" Name="ProdHistoryListview"
+                  SelectionChanged="ProdHistoryListview_SelectionChanged">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="280"/>
+                            <ColumnDefinition Width="110"/>
+                            <ColumnDefinition Width="200"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!--<TextBlock Text="Наименование продукции" FontSize="17"
+                                   HorizontalAlignment="Center"
+                                   Grid.Column="0" Grid.Row="0"/>
+
+                        <TextBlock Text="Количество" FontSize="17"
+                                   HorizontalAlignment="Center"
+                                   Grid.Column="1" Grid.Row="0"/>
+
+                        <TextBlock Text="Дата продажи" FontSize="17"
+                                   HorizontalAlignment="Center"
+                                   Grid.Column="2" Grid.Row="0"/>-->
+
+
+                        <TextBlock Text="{Binding ProdName}"
+                                   TextWrapping="Wrap" FontSize="15"
+                                   Grid.Column="0" Grid.Row="1"
+                                   Margin="10"
+                                   VerticalAlignment="Center"/>
+
+                        <TextBlock Text="{Binding ProductCount, StringFormat={}{0} шт.}"
+                                   FontSize="15" HorizontalAlignment="Center"
+                                   Grid.Column="1" Grid.Row="1"
+                                   Margin="10"
+                                   VerticalAlignment="Center"/>
+
+                        <TextBlock Text="{Binding SaleDate}"
+                                   FontSize="15" HorizontalAlignment="Center"
+                                   Grid.Column="2" Grid.Row="1"
+                                   Margin="10"
+                                   VerticalAlignment="Center"/>
+
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Content="Удалить позицию" FontSize="20"
+                HorizontalAlignment="Left"
+                Name="DeleteBtn" Click="DeleteBtn_Click"
+                Margin="10" Grid.Row="3" Width="210"/>
+
+        <Button Content="Добавить позицию" FontSize="20"
+                Name="AddBtn" Click="AddBtn_Click"
+                HorizontalAlignment="Left"
+                Margin="10" Grid.Row="3" Width="210"/>
+
+        <Button Content="Закрыть" FontSize="20"
+                Grid.Row="3" HorizontalAlignment="Right"
+                Name="QuitBtn" Click="QuitBtn_Click"
+                Margin="10"/>
+
+    </Grid>
+</Window>
